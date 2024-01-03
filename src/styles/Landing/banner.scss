@@ -1,0 +1,134 @@
+/* Banner */
+@import '../_mixins.scss';
+
+.custom-banner {
+  &__container {
+    width: 100%;
+    min-height: 100vh;
+  }
+  &__wrapper {
+    @include flex($JustifyContent: space-between);
+    max-width: var(--maxWidth);
+    height: 100%;
+    margin: auto;
+    @include respond(tablet-landscape) {
+      flex-direction: column-reverse;
+    }
+  }
+  &__left {
+    @include flex($direction: column, $gap: 2.3rem, $alignItems: flex-start);
+    // padding: 0rem 1rem 0rem 0rem;
+    height: 100%;
+    max-width: 80%;
+    &-input {
+      @include flex($gap: 1rem);
+      border-radius: 50px;
+      padding: 0.3rem;
+      box-shadow: 1px 1px 2px 2px rgba(49, 49, 49, 0.1);
+      width: 100%;
+      &-search {
+        border-radius: 50%;
+        padding: 0.2rem;
+        background-color: #ffa024;
+        @include flex();
+      }
+      input {
+        width: 100%;
+        outline: none;
+        border-radius: 50px;
+        border: none;
+        padding: 0.5rem;
+        &::placeholder {
+          color: var(--dark-white);
+        }
+      }
+    }
+    &-pattern {
+      position: absolute;
+      top: 60vh;
+      left: -15vw;
+
+      &-img {
+        rotate: 30deg;
+      }
+      @include respond(tablet-portrait) {
+        display: none;
+      }
+    }
+    // width: 40%;
+    @include respond(tablet-portrait) {
+      width: 100%;
+      gap: 0rem;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      margin-top: 0rem;
+    }
+    margin-top: 10rem;
+    color: rgb(12, 12, 12);
+    &-top {
+      max-width: 100%;
+      @include flex($direction: column, $gap: 1.6rem, $alignItems: flex-start);
+      h1 {
+        font-size: 2.8rem;
+        margin: auto;
+      }
+      p {
+        color: var(--dark-white);
+        font-size: smaller;
+      }
+      @include respond(tablet-portrait) {
+        // margin-top: -4rem;
+      }
+    }
+    &-bottom {
+      @include flex($direction: column, $gap: 2rem, $alignItems: flex-start);
+      h5 {
+        margin-top: 2rem;
+      }
+      div {
+        @include flex($gap: 2rem);
+        @include respond(tablet-portrait) {
+          flex-wrap: wrap;
+        }
+      }
+      @include respond(tablet-portrait) {
+        text-align: center;
+        align-items: center;
+      }
+    }
+  }
+  &__right {
+    // background-color: var(--btn-blue);
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include respond(tablet-portrait) {
+      // top: 0%;
+
+      // right: 0%;
+      // background-color: red;
+      position: relative;
+      // position: relative;
+      // margin-left: auto;
+    }
+    @include respond(mobile) {
+    }
+    &-gElement {
+      margin: auto;
+      max-width: 1000px;
+      min-width: 1000px;
+      height: 100%;
+      @include respond(small-tablet) {
+        max-width: 280px;
+        max-height: 390px;
+        // position: absolute;
+        // right: 0%;
+        // top: 0%;
+        // margin: 0;
+      }
+      object-fit: contain;
+    }
+  }
+}

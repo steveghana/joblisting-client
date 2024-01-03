@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Lato:wght@300;400;700&family=Oswald:wght@300&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/src/assets/svt.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    #loader {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 5000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loader-inner {
+      bottom: 0;
+      height: 60px;
+      left: 0;
+      margin: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100px;
+    }
+
+    .loader-line-wrap {
+      animation: spin 2000ms cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+      box-sizing: border-box;
+      height: 50px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      transform-origin: 50% 100%;
+      width: 100px;
+    }
+
+    .loader-line {
+      border: 4px solid transparent;
+      border-radius: 100%;
+      box-sizing: border-box;
+      height: 100px;
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100px;
+    }
+
+    .loader-line-wrap:nth-child(1) {
+      animation-delay: -50ms;
+    }
+
+    .loader-line-wrap:nth-child(2) {
+      animation-delay: -100ms;
+    }
+
+    .loader-line-wrap:nth-child(3) {
+      animation-delay: -150ms;
+    }
+
+    .loader-line-wrap:nth-child(4) {
+      animation-delay: -200ms;
+    }
+
+    .loader-line-wrap:nth-child(5) {
+      animation-delay: -250ms;
+    }
+
+    .loader-line-wrap:nth-child(1) .loader-line {
+      border-color: #4facfe;
+      height: 90px;
+      width: 90px;
+      top: 7px;
+    }
+
+    .loader-line-wrap:nth-child(2) .loader-line {
+      border-color: hsl(60, 80%, 60%);
+      height: 76px;
+      width: 76px;
+      top: 14px;
+    }
+
+    .loader-line-wrap:nth-child(3) .loader-line {
+      border-color: #4facfe;
+      height: 62px;
+      width: 62px;
+      top: 21px;
+    }
+
+    .loader-line-wrap:nth-child(4) .loader-line {
+      border-color: hsl(60, 80%, 60%);
+      height: 48px;
+      width: 48px;
+      top: 28px;
+    }
+
+    .loader-line-wrap:nth-child(5) .loader-line {
+      border-color: hsl(180, 80%, 60%);
+      height: 34px;
+      width: 34px;
+      top: 35px;
+    }
+
+    @keyframes spin {
+
+      0%,
+      15% {
+        transform: rotate(0);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <title>Savannah Tech.io</title>
+</head>
+
+<body>
+  <script>
+
+    (function () {
+      var minLoadTime = 500; // Adjust as needed
+      var loaded = false;
+      var timedOut = false;
+
+      function onLoad() {
+        if (!loaded || !timedOut) {
+          return;
+        }
+        var loader = document.getElementById('preRender');
+        var rootElement = document.getElementById('root');
+        loader.style.opacity = '0';
+        setTimeout(function () {
+          loader.style.display = 'none';
+        }, 500);
+        rootElement.style.visibility = '';
+      }
+
+      window.addEventListener('load', function () {
+        loaded = true;
+        onLoad();
+      });
+
+      setTimeout(function () {
+        timedOut = true;
+        onLoad();
+      }, minLoadTime);
+    })();
+  </script>
+  <div id="preRender">
+    <div class="loader-inner">
+      <div class="loader-line-wrap">
+        <div class="loader-line"></div>
+      </div>
+      <div class="loader-line-wrap">
+        <div class="loader-line"></div>
+      </div>
+      <div class="loader-line-wrap">
+        <div class="loader-line"></div>
+      </div>
+      <!-- <div class="loader-line-wrap">
+        <div class="loader-line"></div>
+      </div> -->
+      <div class="loader-line-wrap">
+        <div class="loader-line"></div>
+      </div>
+    </div>
+  </div>
+  <div id="root" style="visibility: hidden"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

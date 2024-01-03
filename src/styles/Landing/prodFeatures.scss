@@ -1,0 +1,49 @@
+/*======= prod-feat ========*/
+@import '../_mixins.scss';
+.custom-prodFeat {
+  &__container {
+    margin-top: 3rem;
+    @include flex();
+  }
+  &__header {
+    text-align: center;
+    margin-bottom: 2rem;
+    p {
+      color: var(--messaging-color);
+      font-size: small;
+    }
+  }
+  &__wrapper {
+    max-width: var(--maxWidth);
+    margin: auto;
+    padding: 1rem;
+    @include flex($direction: column);
+  }
+  &__box {
+    @include flex($JustifyContent: space-between);
+    @include respond(tablet-portrait) {
+      flex-direction: column;
+    }
+  }
+  &__Tabs {
+    display: grid;
+    gap: 2rem;
+    // grid-template-columns: repeat(3, minmax(min(100%, 150px), 1fr));
+    @include respond(small-tablet) {
+      grid-template-columns: repeat(1, minmax(min(100%, 150px), 1fr));
+      margin-right: auto;
+    }
+    @include respond(mobile) {
+      grid-template-columns: repeat(1, minmax(min(100%, 150px), 1fr));
+      margin-right: auto;
+    }
+    p {
+      color: var(--messaging-color);
+    }
+  }
+  &__img {
+    // max-height: 420px;
+    // min-height: 200px;
+    object-fit: contain;
+  }
+}

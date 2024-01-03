@@ -1,0 +1,50 @@
+/*======= Messaging-tabs ========*/
+@import '../_mixins.scss';
+.custom-messaging {
+  &__container {
+    margin-top: 2rem;
+    @include flex($direction: column);
+  }
+  &__wrapper {
+    max-width: var(--maxWidth);
+    @include flex($direction: column, $gap: 3rem);
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  &__header {
+    text-align: center;
+    p {
+      color: var(--messaging-color);
+    }
+  }
+  &__Tabs {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(3, minmax(min(100%, 150px), 1fr));
+    @include respond(tablet-portrait) {
+      grid-template-columns: repeat(2, minmax(min(100%, 150px), 1fr));
+      margin-right: auto;
+    }
+    @include respond(mobile) {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+      margin-right: auto;
+    }
+    p {
+      color: var(--messaging-color);
+    }
+  }
+  &__tab {
+    @include flex($direction: column, $gap: 1rem, $alignItems: flex-start);
+    &-link {
+      color: var(--btn-blue);
+      font-size: 13px;
+      @include flex();
+    }
+    &-icon {
+      @include flex();
+      padding: 0.3rem;
+      border-radius: 50%;
+      background-color: var(--btn-blue);
+    }
+  }
+}
