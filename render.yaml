@@ -1,6 +1,5 @@
 # render.yaml
-
 services:
   - name: web
-    buildCommand: npm install --legacy-peer-deps
+    buildCommand: npm --version && npm install --legacy-peer-deps
     startCommand: npm run dev
