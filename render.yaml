@@ -1,4 +1,24 @@
 services:
   - name: web
-    buildCommand: npm install -- --legacy-peer-deps
+    buildCommand: npm install -- --legacy-peer-deps && npm run build
     startCommand: npm run dev
+  - type: web
+    name: SVTech-Web
+    runtime: static
+    staticPublishPath: ./dist
+    buildFilter:
+      paths:
+      - src/**/*.js
+      ignoredPaths:
+      - src/**/*.test.js
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: sameorigin
+    # routes:
+    #   - type: redirect
+    #     source: /old
+    #     destination: /new
+    #   - type: rewrite
+    #     source: /a/*
+    #     destination: /a

@@ -7,7 +7,7 @@ function getDevelopmentHost() {
 }
 
 function getHost() {
-  return isProduction ? 'api.savannahtech.com' : getDevelopmentHost();
+  return isProduction ? 'savannahtech-api.onrender.com' : getDevelopmentHost();
 }
 
 function shouldUseHttps() {
