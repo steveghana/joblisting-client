@@ -1,4 +1,4 @@
 services:
   - name: web
-    buildCommand: npm install -- --legacy-peer-deps --force
+    buildCommand: npm install -- --legacy-peer-deps
     startCommand: npm run dev
