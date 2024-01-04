@@ -21,6 +21,7 @@ const RoleCard = (props: IRoleCard) => {
   const [openDrawer, setOpenDrawer] = useState({
     right: false,
   });
+  const hasToken = sessionStorage.getItem('auth_token');
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
   const textRef = useRef(null);
   const [copySuccess, setCopySuccess] = useState(false);
@@ -196,28 +197,32 @@ const RoleCard = (props: IRoleCard) => {
                       </Button>
                     </Grid>
                   </Box>
-                  <Grid
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                    sx={{
-                      backgroundColor: 'black',
-                      maxWidth: '80%',
-                      color: 'white',
-                      // padding: "10px",
-                      px: 2,
-                      borderRadius: '7px',
-                    }}
-                  >
-                    <Typography variant="caption" color={'white'} ref={textRef}>
-                      {roleLink}
-                    </Typography>
-                  </Grid>
+                  {hasToken && (
+                    <>
+                      <Grid
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                        sx={{
+                          backgroundColor: 'black',
+                          maxWidth: '80%',
+                          color: 'white',
+                          // padding: "10px",
+                          px: 2,
+                          borderRadius: '7px',
+                        }}
+                      >
+                        <Typography variant="caption" color={'white'} ref={textRef}>
+                          {roleLink}
+                        </Typography>
+                      </Grid>
 
-                  <Typography onClick={handleCopy} variant="caption" sx={{ display: 'flex', alignItems: 'center' }} color="primary">
-                    {copySuccess ? 'Copied!' : 'Copy url'}
-                    <CopyAll sx={{ fontSize: '1rem', ml: 1 }} />
-                  </Typography>
+                      <Typography onClick={handleCopy} variant="caption" sx={{ display: 'flex', alignItems: 'center' }} color="primary">
+                        {copySuccess ? 'Copied!' : 'Copy url'}
+                        <CopyAll sx={{ fontSize: '1rem', ml: 1 }} />
+                      </Typography>
+                    </>
+                  )}
                 </Box>
               </Grid>
             </Grid>
