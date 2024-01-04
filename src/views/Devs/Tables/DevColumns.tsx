@@ -37,7 +37,6 @@ const DevTableData = ({ devs, isLoading, isFetching, tableType, handleOpenInterv
   const [updateUser, { isError: isUpdatingError, isLoading: isUpdatingDev, error: updateError }] = useUpdateDevMutation();
   const [deleteDev, { isError: isDeletingError, isLoading: isDeletingDev, error: deleteError }] = useDeletDevMutation();
   const [bulkdeleteuser, { isError: isBulkDeletingError, isLoading: isBulkDeletingDev, error: bulkdeleteError }] = useBulkdeletDevMutation();
-  console.log(devs, 'fjdkfjd');
   async function cancelinterviewFn(row: MRT_Row<IDev>) {
     console.log('canceling the interview');
     try {

@@ -11,7 +11,13 @@ const Roles = () => {
   const { data, isLoading, isFetching, isError } = useGetRolesQuery();
   const navigate = useNavigate();
   if (isLoading || isFetching) {
-    return <RoleSkeleton />;
+    return (
+      <>
+        {Array.from({ length: 3 }).map((_, index) => (
+          <RoleSkeleton key={index} />
+        ))}
+      </>
+    );
   }
 
   if (!data || !data.length || !data.some((item) => item.jobs.length)) {

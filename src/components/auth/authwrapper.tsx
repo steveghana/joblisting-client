@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography, CssBaseline, Button } from '@mui/material';
+import { Box, Grid, Paper, Typography, CssBaseline, Button, CircularProgress } from '@mui/material';
 import CustomButton from '../button';
 import { themePalette } from '@/themes/schemes/palette';
 import pattern from '@/assets/images/auth/auth-pattern-dark.svg';
@@ -10,10 +10,11 @@ import { useGetRolesQuery } from '@/store/services/userAuth.service';
 import { IProfession } from '@/types/roles';
 import { getAvailableRoles } from '@/utils/checkvalid';
 export default function AuthWrapper2(props: { children: React.ReactNode }) {
-  const { data } = useGetRolesQuery(undefined, { refetchOnFocus: true, refetchOnReconnect: true, refetchOnMountOrArgChange: 5 });
+  const { data, isLoading } = useGetRolesQuery(undefined, { refetchOnFocus: true, refetchOnReconnect: true, refetchOnMountOrArgChange: 5 });
   const availableRoles = getAvailableRoles(data as IProfession[]);
   console.log(availableRoles);
   sessionStorage.setItem('rolesAvailable', JSON.stringify(availableRoles));
+  // if(isLoading) return <div>Loading...</div>;
   return (
     <>
       <CssBaseline />
@@ -59,7 +60,7 @@ export default function AuthWrapper2(props: { children: React.ReactNode }) {
         <Grid item xs={12} sm={12} md={6} lg={6} component={Paper} elevation={6} square>
           <Box
             sx={{
-              mx: 4,
+              px: 4,
               display: 'flex',
               // width: '100%',
               height: '100%',
@@ -71,9 +72,25 @@ export default function AuthWrapper2(props: { children: React.ReactNode }) {
               backgroundAttachment: 'fixed',
               zIndex: 44,
               alignItems: 'center',
+              position: 'relative',
               justifyContent: 'center',
             }}
           >
+            {isLoading && (
+              <Box
+                position={'absolute'}
+                sx={{
+                  inset: '0 0 0 0',
+                  background: 'rgba(0,0,0, 0.2)',
+                  zIndex: 3,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <CircularProgress />
+              </Box>
+            )}
             {props.children}
           </Box>
         </Grid>

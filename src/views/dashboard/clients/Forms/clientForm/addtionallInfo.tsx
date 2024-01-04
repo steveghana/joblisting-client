@@ -150,7 +150,14 @@ const RoleInfo = (props: IRoleInfo) => {
                           </div>
                         ))}
                         {values.tasks.length < 1 && (
-                          <CustomButton size="small" type="button" variant="contained" onClick={() => arrayHelpers.push('')} text="Add a new task" />
+                          <CustomButton
+                            size="small"
+                            type="button"
+                            variant="contained"
+                            disabled={isSubmitting}
+                            onClick={() => arrayHelpers.push('')}
+                            text="Add a new task"
+                          />
                         )}
                       </div>
                     )}
@@ -251,7 +258,15 @@ const RoleInfo = (props: IRoleInfo) => {
                   </ErrorMessage>
                 </FormControl>
                 {'atClientPage' in props && props.atClientPage ? (
-                  <CustomButton text="Save" size="small" fullWidth startIcon={<Edit />} disabled={isSubmitting} type="submit" />
+                  <CustomButton
+                    text="Save"
+                    size="small"
+                    fullWidth
+                    startIcon={<Edit />}
+                    loading={isSubmitting}
+                    disabled={isSubmitting}
+                    type="submit"
+                  />
                 ) : (
                   <Box display={'flex'} gap={1}>
                     <CustomButton

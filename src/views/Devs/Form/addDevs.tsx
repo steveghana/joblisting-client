@@ -64,7 +64,7 @@ const CreateDeveloperForm = ({ onClose }: { onClose: () => void }) => {
           onClose();
         }
       } catch (error) {
-        // toast.error('Something went wrong, couldnt add developer', { position: 'bottom-center' });
+        toast.error('Couldnt add developer, check credentials and try again later', { position: 'bottom-center' });
         formikHelpers.setSubmitting(false);
         return;
       }
@@ -211,7 +211,7 @@ const CreateDeveloperForm = ({ onClose }: { onClose: () => void }) => {
                 </FormHelperText>
               )}
             </ErrorMessage>
-            <CustomButton type="submit" fullWidth disabled={isSubmitting}>
+            <CustomButton type="submit" fullWidth disabled={isSubmitting || isLoading} loading={isSubmitting || isLoading}>
               Submit
             </CustomButton>
           </Box>

@@ -24,7 +24,7 @@ const TableSkeletonLoader = () => {
             </TableCell>
           </TableRow>
 
-          {[1, 2, 3, 4].map((index) => (
+          {Array.from({ length: 9 }).map((_, index) => (
             <TableRow key={index}>
               <TableCell>
                 <Skeleton variant="text" animation="wave" />

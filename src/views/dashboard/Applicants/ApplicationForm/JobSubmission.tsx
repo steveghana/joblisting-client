@@ -186,7 +186,14 @@ const JobSubmissionContainer: React.FC = () => {
             <Box display="flex" justifyContent="center" alignItems="center" sx={{ mt: 3 }}></Box>
 
             <Box width="100%" display="flex" justifyContent="center">
-              <CustomButton disabled={isLoading || apiLoading} fullWidth={!matchUpMd} text="Submit application" type="submit" variant="contained" />
+              <CustomButton
+                disabled={isLoading || apiLoading}
+                loading={isLoading || apiLoading}
+                fullWidth={!matchUpMd}
+                text="Submit application"
+                type="submit"
+                variant="contained"
+              />
             </Box>
           </Form>
         )}

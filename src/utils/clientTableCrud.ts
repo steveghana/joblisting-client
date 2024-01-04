@@ -35,7 +35,6 @@ export const handleSave = async (
   update: ExampleFormProps['updateClient'],
   setValidationErrors: ExampleFormProps['setValidationErrors'],
 ) => {
-  console.log(values, 'thislfd');
   if (Object.keys(values)[0] === 'salary') {
     const { salary } = values;
     const regex = /^\d+$/;

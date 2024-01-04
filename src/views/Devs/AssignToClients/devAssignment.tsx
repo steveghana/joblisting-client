@@ -232,7 +232,7 @@ const DeveloperAssignmentForm: React.FC<DeveloperAssignmentFormProps> = ({ onSub
                       </ErrorMessage>
                     </FormControl>
                     <Grid item alignSelf={'center'} lg={12} xs={12}>
-                      <CustomButton fullWidth startIcon={<EditTwoTone />} type="submit">
+                      <CustomButton fullWidth startIcon={<EditTwoTone />} loading={isLoading || isSubmitting} type="submit">
                         Assign Developer
                       </CustomButton>
                     </Grid>

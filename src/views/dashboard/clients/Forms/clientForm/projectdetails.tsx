@@ -175,7 +175,15 @@ const ProjectDetails = (props: IProjectDetails) => {
                   </ErrorMessage>
                 </FormControl>
                 {'atClientPage' in props && props.atClientPage ? (
-                  <CustomButton text="Save" size="small" fullWidth startIcon={<Edit />} disabled={isSubmitting} type="submit" />
+                  <CustomButton
+                    text="Save"
+                    size="small"
+                    fullWidth
+                    startIcon={<Edit />}
+                    disabled={isSubmitting}
+                    loading={isSubmitting}
+                    type="submit"
+                  />
                 ) : (
                   <Box display={'flex'} gap={1}>
                     <CustomButton
@@ -183,11 +191,12 @@ const ProjectDetails = (props: IProjectDetails) => {
                       fullWidth
                       startIcon={<ArrowBack />}
                       disabled={isSubmitting}
+                      loading={isSubmitting}
                       type="button"
                       variant="outlined"
                       onClick={() => ('onNext' in props ? props.handleBack() : {})}
                     />
-                    <CustomButton text="Next" fullWidth disabled={isSubmitting} variant="contained" type="submit" />
+                    <CustomButton text="Next" fullWidth disabled={isSubmitting} loading={isSubmitting} variant="contained" type="submit" />
                   </Box>
                 )}
               </Stack>

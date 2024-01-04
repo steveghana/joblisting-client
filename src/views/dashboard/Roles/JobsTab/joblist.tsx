@@ -23,7 +23,7 @@ const JobsList: React.FC<JobsListProps> = ({ jobs, location, roleId }) => {
   const appliedJobIds = Object.keys(hasApplied).map((jobid) => jobid);
   const now = new Date();
   return (
-    <Grid container lg={7} md={8} sm={12} mt={2}>
+    <Grid container lg={7} md={12} sm={12} mt={2}>
       {!jobs?.length ? (
         <NoData />
       ) : (

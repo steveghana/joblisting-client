@@ -67,7 +67,7 @@ const JobFilters: React.FC<JobFiltersProps> = ({ filters, onChange }) => {
                 name={Object.keys(item)[0]}
                 control={<Checkbox checked={checkboxes[index].checked} onChange={(e) => handleFilterChange(e, index)} />}
               />
-              <Typography variant="caption">{item[Object.keys(item)[0]].length}</Typography>
+              <Typography variant="caption">{1}</Typography>
             </Box>
           </Box>
         ))}

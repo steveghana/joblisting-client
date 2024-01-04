@@ -12,14 +12,6 @@ import NoData from '../../../components/NoData';
 import FullscreenProgress from '../../../components/FullscreenProgress/FullscreenProgress';
 import TableSkeletonLoader from '@/components/Skeleton/tableSkeleton';
 import { useClientColums } from '@/hooks/useColumns';
-/**
- * Clients component displays a list of clients from the API.
- * It fetches the clients data and handles loading/error states.
- * Renders a table of clients if data is available,
- * otherwise shows loading indicator or empty state.
- * Allows navigating to add a new client.
- * Exported as default for use in route definitions.
- */
 
 const Clients = () => {
   const columns = useClientColums();

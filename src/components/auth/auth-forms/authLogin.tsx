@@ -225,8 +225,10 @@ const AuthLogin = () => {
               <AnimateButton>
                 <Button
                   aria-label={`login button`}
-                  disabled={isWithGoogleLoading}
+                  // disabled={isWithGoogleLoading}
                   onClick={() => loginAuth()}
+                  disabled={isSubmitting || isLoading || isWithGoogleLoading}
+
                   // disabled={renderProps.disabled}
                 >
                   {React.createElement(Social['Google'].icon)}
@@ -237,7 +239,13 @@ const AuthLogin = () => {
                   if (typeof handler !== 'function' || !Social[key] || !Social[key].icon) return null;
                   return (
                     <AnimateButton key={i}>
-                      <Button key={key} aria-label={`${key} login button`} onClick={handler} disabled={isLoading}>
+                      <Button
+                        key={key}
+                        aria-label={`${key} login button`}
+                        onClick={handler}
+                        disabled={isSubmitting || isLoading || isWithGoogleLoading}
+                        // loading={isSubmitting || isLoading || isWithGoogleLoading}
+                      >
                         {React.createElement(Social[key].icon)}
                       </Button>
                     </AnimateButton>
@@ -266,6 +274,7 @@ const AuthLogin = () => {
                   sx={{ m: 0 }}
                   disableElevation
                   disabled={isSubmitting || isLoading || isWithGoogleLoading}
+                  loading={isSubmitting || isLoading || isWithGoogleLoading}
                   fullWidth
                   size="large"
                   text="Sign in"

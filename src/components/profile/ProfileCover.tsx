@@ -86,7 +86,7 @@ const ProfileCover = ({ user }: { user: IUser }) => {
   const navigate = useNavigate();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [assingRoledialogOpen, setassignRoleDialogOpen] = useState(false);
-
+  // console.log(user, 'this is the user');
   return (
     <>
       <SubCard>

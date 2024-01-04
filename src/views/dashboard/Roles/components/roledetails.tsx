@@ -10,7 +10,6 @@ import { IRoleData } from '../../../../types/roles';
 import NoData from '../../../../components/NoData';
 import { formatTimeDifference } from '../../../../utils/timeFormatter';
 import CustomButton from '../../../../components/button';
-import { unknown } from 'zod';
 interface IRoleDetails {
   setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
   role: IRoleData;
@@ -22,7 +21,7 @@ const RoleDetails = ({ role, setCurrentTab }: IRoleDetails): JSX.Element => {
   const date = new Date(role.createdAt);
   const hasApplied: Record<string, { applied: boolean }> = JSON.parse(localStorage.getItem('hasApplied') as string) || {};
   const appliedJobIds = Object.keys(hasApplied).map((jobid) => jobid);
-  console.log(role);
+  // console.log(role);
   return (
     <Card>
       {!role ? (

@@ -87,9 +87,7 @@ const Interviews = () => {
 
     setState(open);
   };
-  if (isLoading) {
-    <EventSchedulerSkeletonLoader />;
-  }
+
   const ExtractEventFromEvents = ({ event }: { event: Iinterviews }) => {
     // All guest and candidates should be merged as one for the for array of guests
     if (!event?.candidate) {
@@ -124,6 +122,9 @@ const Interviews = () => {
       />
     );
   };
+  if (isLoading || isFetching) {
+    <EventSchedulerSkeletonLoader />;
+  }
   return (
     <MainCard title="Event Details">
       <Box display="flex">
@@ -135,12 +136,6 @@ const Interviews = () => {
       </Box>
       <Grid container>
         <Grid item xs={12}>
-          {/* <Grid item xs={12}>
-            <Typography variant="h4" align="center" gutterBottom>
-              Interview Details
-            </Typography>
-          </Grid> */}
-          {/* {!data?.length && ( */}
           <Box
             sx={{
               display: 'flex',
@@ -231,7 +226,6 @@ const Interviews = () => {
                                 Location: {item.eventOption}
                               </Typography>
                             </Grid>
-                            {/* Additional interview details can be added here */}
                           </Grid>
                           <Divider />
                           <InterviewComments comments={item.comments as TInterviewComment[]} interviewId={item.id as string} />

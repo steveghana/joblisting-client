@@ -46,15 +46,6 @@ const Developers = () => {
           </Grid>
         </Grid>
       )}
-      {/* <DevTableData
-        columns={columns}
-        devs={devsData}
-        // You can still use refetch if needed
-        refetch={() => refetch()}
-        isLoading={isLoading}
-        isError={isError}
-        isFetching={isFetching}
-      /> */}
     </MainCard>
   );
 };

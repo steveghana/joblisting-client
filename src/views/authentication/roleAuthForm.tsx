@@ -20,7 +20,7 @@ function RoleAuth() {
   const [role, setRole] = useState<IProfession>();
   const navigate = useNavigate();
   const [helperText, setHelperText] = useState('');
-  const [loginUser, { isLoading: isWithGoogleLoading }] = useLoginUserMutation();
+  const [loginUser, { isLoading }] = useLoginUserMutation();
   let rolesAvailable: string[] = JSON.parse(sessionStorage.getItem('rolesAvailable') as string) || [];
 
   const handleRadioChange = (event: any) => {
@@ -64,7 +64,7 @@ function RoleAuth() {
     }
   };
 
-  if (isWithGoogleLoading) {
+  if (isLoading) {
     return <FullscreenProgress />;
   }
 
@@ -105,10 +105,10 @@ function RoleAuth() {
           </RadioGroup>
           <CustomButton
             text="Continue"
-            disabled={isWithGoogleLoading}
+            disabled={isLoading}
             endIcon={<ArrowForward />}
             loadingPosition="end"
-            loading={isWithGoogleLoading}
+            loading={isLoading}
             onClick={onMoveToRegister}
           />
         </FormControl>
