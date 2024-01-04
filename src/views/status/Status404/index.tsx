@@ -3,6 +3,7 @@ import { Box, Card, Typography, Container, Divider, Button, FormControl, Outline
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import status404 from '../../../assets/status/404.svg';
 import { styled } from '@mui/material/styles';
+import CustomButton from '@/components/button';
 
 const MainContent = styled(Box)(
   ({ theme }) => `
@@ -66,9 +67,7 @@ function Status404() {
                 />
               </FormControl>
               <Divider sx={{ my: 4 }}>OR</Divider>
-              <Button href="/" variant="outlined">
-                Go to homepage
-              </Button>
+              <CustomButton>Go to homepage</CustomButton>
             </Card>
           </Container>
         </Container>

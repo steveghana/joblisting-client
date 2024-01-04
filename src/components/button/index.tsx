@@ -28,7 +28,7 @@ function CustomButton(props: IButtonProps) {
         minWidth: '50px',
       }}
     >
-      <Typography fontSize={'.8rem'} variant="button">
+      <Typography fontSize={'.9rem'} variant="button">
         {props.text}
       </Typography>
       {props.children}
