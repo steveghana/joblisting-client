@@ -18,7 +18,7 @@ import {
   Typography,
 } from '@mui/material';
 import * as Yup from 'yup';
-import { Formik } from 'formik';
+import { Formik, FormikHelpers } from 'formik';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AnimateButton from '../../extended/AnimateButton';
@@ -49,38 +49,53 @@ const AuthLogin = () => {
   const [loginWithGoogle, { isLoading: isWithGoogleLoading }] = useLoginUserWithGoogleMutation();
 
   /* ======================== */
-  async function login(values: { email: any; password: any; submit?: null }) {
-    try {
-      const data = await loginUser({
-        password: values.password,
+  async function login(
+    values: { email: any; password: any; submit?: null },
+    setters: FormikHelpers<{
+      email: string;
+      password: string;
+      submit: any;
+    }>,
+  ) {
+    let rolesAvailable: string[] = JSON.parse(sessionStorage.getItem('rolesAvailable') as string);
+    if (!rolesAvailable.length) {
+      setters.setSubmitting(false);
+      setters.resetForm();
+      toast.warning(`Registeration is closed at the moment, contact support`, { position: 'bottom-center' });
+      return false;
+    } else {
+      try {
+        const data = await loginUser({
+          password: values.password,
 
-        email: values.email,
-        rememberMe: false,
-      }).unwrap();
-      // if (!data) return;
-      const { authTokenId, role } = data;
-      if (!roles.includes(role)) {
-        sessionStorage.setItem(
-          'tempUserinfo',
-          JSON.stringify({
-            email: values.email,
-            password: values.password,
-          }),
-        );
-        navigate('/role/select');
-        return;
+          email: values.email,
+          rememberMe: false,
+        }).unwrap();
+        // if (!data) return;
+        const { authTokenId, role } = data;
+        if (!roles.includes(role)) {
+          sessionStorage.setItem(
+            'tempUserinfo',
+            JSON.stringify({
+              email: values.email,
+              password: values.password,
+            }),
+          );
+          navigate('/role/select');
+          return;
+        }
+        if (!authTokenId) return;
+        sessionStorage.setItem('auth_token', authTokenId);
+        sessionStorage.setItem('role', role);
+
+        navigate('/dashboard/default');
+        toast.success(`Welcome back`, { position: 'top-center' });
+
+        return true;
+      } catch (err) {
+        console.log(err, error, 'this  is the error');
+        toast.error(`Something went wrong`, { position: 'top-center' });
       }
-      if (!authTokenId) return;
-      sessionStorage.setItem('auth_token', authTokenId);
-      sessionStorage.setItem('role', role);
-
-      navigate('/dashboard/default');
-      toast.success(`Welcome back`, { position: 'top-center' });
-
-      return true;
-    } catch (err) {
-      console.log(err, error, 'this  is the error');
-      toast.error(`Something went wrong`, { position: 'top-center' });
     }
   }
 
@@ -90,9 +105,9 @@ const AuthLogin = () => {
   };
   const onGoogleSucess = async (codeResponse: Omit<TokenResponse, 'error' | 'error_description' | 'error_uri'>) => {
     let data: IProfession[] = JSON.parse(sessionStorage.getItem('rolesAvailable') as string);
-    const registrationAvailable = isRegistrationOpen(data);
-    const remainingRoles = getAvailableRoles(data);
-    if (!remainingRoles.length || !registrationAvailable) {
+    // const registrationAvailable = isRegistrationOpen(data);
+    // const remainingRoles = getAvailableRoles(data);
+    if (!data.length) {
       toast.warning(`Registeration is closed at the moment, contact support`, { position: 'bottom-center' });
       return false;
     } else {
@@ -138,7 +153,7 @@ const AuthLogin = () => {
           password: Yup.string().max(255).required('Password is required'),
         })}
         onSubmit={async (values, setters) => {
-          await login(values);
+          await login(values, setters);
         }}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (

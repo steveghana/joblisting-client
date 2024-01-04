@@ -12,9 +12,7 @@ import { getAvailableRoles } from '@/utils/checkvalid';
 export default function AuthWrapper2(props: { children: React.ReactNode }) {
   const { data, isLoading } = useGetRolesQuery(undefined, { refetchOnFocus: true, refetchOnReconnect: true, refetchOnMountOrArgChange: 5 });
   const availableRoles = getAvailableRoles(data as IProfession[]);
-  console.log(availableRoles);
   sessionStorage.setItem('rolesAvailable', JSON.stringify(availableRoles));
-  // if(isLoading) return <div>Loading...</div>;
   return (
     <>
       <CssBaseline />
