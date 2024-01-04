@@ -171,7 +171,6 @@ const AuthRegister = ({ ...others }) => {
   useEffect(() => {
     changePassword('123456');
   }, []);
-
   return (
     <>
       {!regAvailable ||
@@ -415,7 +414,7 @@ const AuthRegister = ({ ...others }) => {
               <AnimateButton>
                 <CustomButton
                   disableElevation
-                  disabled={isSubmitting || isLoading || isWithGoogleLoading}
+                  disabled={isSubmitting || isLoading || isWithGoogleLoading || level?.label === 'Weak' || level?.label === 'Poor'}
                   loading={isSubmitting || isLoading || isWithGoogleLoading}
                   fullWidth
                   size="large"
